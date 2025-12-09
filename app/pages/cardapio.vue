@@ -75,7 +75,7 @@ definePageMeta({
 
 const categoriaSelecionada = ref("Todos");
 const searchQuery = ref("");
-const sortBy = ref("popular");
+const sortBy = ref("name-asc");
 const sortActive = ref(false);
 const filterActive = ref(false);
 const showDetails = ref(false);
@@ -147,10 +147,9 @@ const produtosFiltrados = computed(() => {
 		case "name-desc":
 			sorted.sort((a, b) => b.nome.localeCompare(a.nome));
 			break;
-		case "popular":
-		case "recommended":
 		default:
-			// Manter ordem original (depois pode implementar lógica específica)
+			// Ordem alfabética por padrão
+			sorted.sort((a, b) => a.nome.localeCompare(b.nome));
 			break;
 	}
 

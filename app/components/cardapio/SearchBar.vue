@@ -34,16 +34,6 @@
 
 				<template #default="{ close }">
 					<UiDropdownItem
-						label="Mais Vendidos"
-						:active="sortBy === 'popular'"
-						@click="handleSort('popular', close)"
-					/>
-					<UiDropdownItem
-						label="Recomendados"
-						:active="sortBy === 'recommended'"
-						@click="handleSort('recommended', close)"
-					/>
-					<UiDropdownItem
 						label="Preço: Menor para Maior"
 						:active="sortBy === 'price-asc'"
 						@click="handleSort('price-asc', close)"
@@ -117,7 +107,7 @@ interface Props {
 withDefaults(defineProps<Props>(), {
 	modelValue: "",
 	placeholder: "Buscar produtos...",
-	sortBy: "popular",
+	sortBy: "name-asc",
 	sortActive: false,
 	filterActive: false,
 	priceRange: () => [0, 100],
