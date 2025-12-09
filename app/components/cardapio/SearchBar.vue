@@ -22,12 +22,12 @@
 				<template #trigger="{ isOpen }">
 					<button
 						type="button"
-						class="p-2 min-[400px]:p-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors shrink-0 cursor-pointer"
-						:class="{ 'bg-gray-50': isOpen || sortActive }"
+						class="p-2 min-[400px]:p-2.5 border border-[rgb(var(--ui-border-base))] rounded-lg hover:bg-[rgb(var(--ui-bg-muted))] transition-colors shrink-0 cursor-pointer"
+						:class="{ 'bg-[rgb(var(--ui-bg-muted))]': isOpen || sortActive }"
 					>
 						<Icon
 							name="lucide:arrow-up-down"
-							class="w-5 h-5 min-[400px]:w-5.5 min-[400px]:h-5.5 text-gray-600"
+							class="w-5 h-5 min-[400px]:w-5.5 min-[400px]:h-5.5 text-[rgb(var(--ui-text-secondary))]"
 						/>
 					</button>
 				</template>
@@ -61,12 +61,12 @@
 				<template #trigger="{ isOpen }">
 					<button
 						type="button"
-						class="p-2 min-[400px]:p-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors shrink-0 cursor-pointer"
-						:class="{ 'bg-gray-50': isOpen || filterActive }"
+						class="p-2 min-[400px]:p-2.5 border border-[rgb(var(--ui-border-base))] rounded-lg hover:bg-[rgb(var(--ui-bg-muted))] transition-colors shrink-0 cursor-pointer"
+						:class="{ 'bg-[rgb(var(--ui-bg-muted))]': isOpen || filterActive }"
 					>
 						<Icon
 							name="lucide:filter"
-							class="w-5 h-5 min-[400px]:w-5.5 min-[400px]:h-5.5 text-gray-600"
+							class="w-5 h-5 min-[400px]:w-5.5 min-[400px]:h-5.5 text-[rgb(var(--ui-text-secondary))]"
 						/>
 					</button>
 				</template>

@@ -5,7 +5,7 @@
 		:class="
 			active
 				? 'bg-[rgb(var(--ui-primary))]/10 text-[rgb(var(--ui-primary))] font-medium'
-				: 'text-gray-700 hover:bg-gray-50'
+				: 'text-[rgb(var(--ui-text-primary))] hover:bg-[rgb(var(--ui-bg-muted))]'
 		"
 		@click="handleClick"
 	>

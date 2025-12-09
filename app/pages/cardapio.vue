@@ -7,38 +7,55 @@
 			@ver-mais="showRestaurantInfo = true"
 		/>
 
-		<!-- Container centralizado com largura máxima -->
-		<div class="max-w-4xl mx-auto">
-			<div class="pt-4">
-				<CategoryFilter
-					:categorias="categorias"
-					:categoria-selecionada="categoriaSelecionada"
-					@select="categoriaSelecionada = $event"
-				/>
+		<!-- Container com Layout Responsivo -->
+		<div class="max-w-7xl mx-auto">
+			<!-- Layout de 2 Colunas no Desktop -->
+			<div class="md:grid md:grid-cols-[1fr_380px] md:gap-6 md:px-4 md:pt-6">
+				<!-- Coluna Esquerda: Conteúdo Principal -->
+				<div class="md:min-w-0">
+					<div class="pt-4 md:pt-0">
+						<CategoryFilter
+							:categorias="categorias"
+							:categoria-selecionada="categoriaSelecionada"
+							@select="categoriaSelecionada = $event"
+						/>
+					</div>
+
+					<SearchBar
+						v-model="searchQuery"
+						v-model:sort-by="sortBy"
+						v-model:price-range="priceRange"
+						v-model:em-promocao="emPromocao"
+						v-model:destaques="destaques"
+						:max-price="maxPrice"
+						placeholder="Buscar produtos..."
+						:sort-active="sortActive"
+						:filter-active="filterActive"
+						@sort="handleSort"
+						@clear-filters="limparFiltros"
+						@apply-filters="aplicarFiltros"
+					/>
+
+					<!-- Lista de Produtos -->
+					<ProductList
+						:produtos="produtosFiltrados"
+						@add="adicionarAoCarrinho"
+						@click="abrirDetalhes"
+						@clear-filters="limparFiltros"
+					/>
+				</div>
+
+				<!-- Coluna Direita: Carrinho (Desktop Only) -->
+				<div class="hidden md:block">
+					<Cart
+						:items="cartItems"
+						@increase="aumentarQuantidade"
+						@decrease="diminuirQuantidade"
+						@remove="removerDoCarrinho"
+						@checkout="finalizarPedido"
+					/>
+				</div>
 			</div>
-
-			<SearchBar
-				v-model="searchQuery"
-				v-model:sort-by="sortBy"
-				v-model:price-range="priceRange"
-				v-model:em-promocao="emPromocao"
-				v-model:destaques="destaques"
-				:max-price="maxPrice"
-				placeholder="Buscar produtos..."
-				:sort-active="sortActive"
-				:filter-active="filterActive"
-				@sort="handleSort"
-				@clear-filters="limparFiltros"
-				@apply-filters="aplicarFiltros"
-			/>
-
-			<!-- Lista de Produtos -->
-			<ProductList
-				:produtos="produtosFiltrados"
-				@add="adicionarAoCarrinho"
-				@click="abrirDetalhes"
-				@clear-filters="limparFiltros"
-			/>
 		</div>
 
 		<!-- Bottom Sheet de Detalhes do Produto -->
@@ -67,7 +84,19 @@ import SearchBar from "~/components/cardapio/SearchBar.vue";
 import ProductList from "~/components/cardapio/ProductList.vue";
 import ProductDetails from "~/components/cardapio/ProductDetails.vue";
 import RestaurantInfo from "~/components/layouts/RestaurantInfo.vue";
+import Cart from "~/components/cardapio/Cart.vue";
 import { produtos as produtosMock, categorias as categoriasMock, type Produto } from "~/mocks";
+
+/**
+ * 📌 Página do Cardápio
+ *
+ * Página principal do cardápio com filtros, busca, ordenação e carrinho.
+ * Layout responsivo: mobile (1 coluna) e desktop (2 colunas com carrinho fixo).
+ */
+
+interface CartItem extends Produto {
+	quantidade: number;
+}
 
 definePageMeta({
 	layout: "default",
@@ -90,6 +119,9 @@ const maxPrice = ref(100);
 
 const categorias = categoriasMock;
 const produtos = ref(produtosMock);
+
+// Carrinho de compras
+const cartItems = ref<CartItem[]>([]);
 
 // Produtos filtrados e ordenados
 const produtosFiltrados = computed(() => {
@@ -169,17 +201,71 @@ const abrirDetalhes = (produto: Produto) => {
 	showDetails.value = true;
 };
 
+/**
+ * Adiciona produto ao carrinho
+ */
 const adicionarAoCarrinho = (produto: Produto) => {
-	// TODO: Integrar com a store do Pinia
-	alert(`${produto.nome} adicionado ao carrinho!`);
+	const itemExistente = cartItems.value.find((item) => item.id === produto.id);
+
+	if (itemExistente) {
+		itemExistente.quantidade++;
+	} else {
+		cartItems.value.push({ ...produto, quantidade: 1 });
+	}
 };
 
+/**
+ * Adiciona produto ao carrinho com quantidade (via modal de detalhes)
+ */
 const adicionarAoCarrinhoComQuantidade = () => {
 	if (produtoSelecionado.value) {
-		// TODO: Integrar com a store do Pinia (incluir quantidade)
-		alert(`${produtoSelecionado.value.nome} adicionado ao carrinho!`);
+		adicionarAoCarrinho(produtoSelecionado.value);
 		showDetails.value = false;
 	}
+};
+
+/**
+ * Aumenta quantidade de um item no carrinho
+ */
+const aumentarQuantidade = (id: number) => {
+	const item = cartItems.value.find((item) => item.id === id);
+	if (item) {
+		item.quantidade++;
+	}
+};
+
+/**
+ * Diminui quantidade de um item no carrinho
+ */
+const diminuirQuantidade = (id: number) => {
+	const item = cartItems.value.find((item) => item.id === id);
+	if (item) {
+		if (item.quantidade > 1) {
+			item.quantidade--;
+		} else {
+			removerDoCarrinho(id);
+		}
+	}
+};
+
+/**
+ * Remove item do carrinho
+ */
+const removerDoCarrinho = (id: number) => {
+	const index = cartItems.value.findIndex((item) => item.id === id);
+	if (index !== -1) {
+		cartItems.value.splice(index, 1);
+	}
+};
+
+/**
+ * Finaliza o pedido
+ */
+const finalizarPedido = () => {
+	if (cartItems.value.length === 0) return;
+
+	// TODO: Implementar lógica de finalização (WhatsApp, pagamento, etc)
+	alert("Pedido finalizado! (Implementar integração)");
 };
 
 const limparFiltros = () => {

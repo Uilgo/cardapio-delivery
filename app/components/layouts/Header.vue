@@ -11,7 +11,7 @@
 
 		<!-- Container centralizado para logo e nome -->
 		<div
-			class="max-w-4xl mx-auto px-3 min-[400px]:px-4 relative flex items-center gap-2 min-[400px]:gap-3 sm:gap-4"
+			class="max-w-7xl mx-auto px-3 min-[400px]:px-4 relative flex items-center gap-2 min-[400px]:gap-3 sm:gap-4"
 		>
 			<!-- Logo sobreposta -->
 			<div
@@ -49,7 +49,7 @@
 			<!-- Botão Ver Mais -->
 			<button
 				type="button"
-				class="px-3 py-1.5 min-[400px]:px-3.5 min-[400px]:py-1.5 sm:px-4 sm:py-2 text-xs min-[400px]:text-sm font-medium text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-200 shrink-0 cursor-pointer"
+				class="px-3 py-1.5 min-[400px]:px-3.5 min-[400px]:py-1.5 sm:px-4 sm:py-2 text-xs min-[400px]:text-sm font-medium text-[rgb(var(--ui-primary))] border-2 border-[rgb(var(--ui-primary))] rounded-lg hover:bg-[rgb(var(--ui-primary))] hover:text-white transition-all duration-200 shrink-0 cursor-pointer"
 				@click="$emit('verMais')"
 			>
 				Ver Mais

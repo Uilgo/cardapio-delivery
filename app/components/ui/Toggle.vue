@@ -5,7 +5,11 @@
 		:aria-checked="modelValue"
 		:disabled="disabled"
 		class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--ui-primary))]/20 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-		:class="modelValue ? 'bg-[rgb(var(--ui-primary))]' : 'bg-gray-300 hover:bg-gray-400'"
+		:class="
+			modelValue
+				? 'bg-[rgb(var(--ui-primary))]'
+				: 'bg-[rgb(var(--ui-border-base))] hover:bg-[rgb(var(--ui-text-muted))]'
+		"
 		@click="toggle"
 	>
 		<span

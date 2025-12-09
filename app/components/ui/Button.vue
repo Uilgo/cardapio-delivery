@@ -38,11 +38,13 @@ const buttonClasses = computed(() => {
 		"inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
 
 	const variants = {
-		solid: "bg-[rgb(var(--ui-primary))] text-white hover:opacity-90 active:scale-95 shadow-sm",
+		solid:
+			"bg-[rgb(var(--ui-primary))] text-white hover:bg-[rgb(var(--ui-primary))]/90 active:scale-95 shadow-sm",
 		outline:
 			"border-2 border-[rgb(var(--ui-primary))] text-[rgb(var(--ui-primary))] hover:bg-[rgb(var(--ui-primary))] hover:text-white",
 		soft: "bg-[rgb(var(--ui-primary))]/10 text-[rgb(var(--ui-primary))] hover:bg-[rgb(var(--ui-primary))]/20",
-		subtle: "bg-gray-100 text-gray-700 hover:bg-gray-200",
+		subtle:
+			"bg-[rgb(var(--ui-bg-muted))] text-[rgb(var(--ui-text-primary))] hover:bg-[rgb(var(--ui-bg-subtle))]",
 		ghost: "text-[rgb(var(--ui-primary))] hover:bg-[rgb(var(--ui-primary))]/10",
 		link: "text-[rgb(var(--ui-primary))] hover:underline underline-offset-4",
 	};

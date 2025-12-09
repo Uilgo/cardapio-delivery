@@ -30,10 +30,10 @@
 						<h2 class="text-lg font-bold text-gray-900">{{ title }}</h2>
 						<button
 							type="button"
-							class="p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+							class="p-2 hover:bg-[rgb(var(--ui-bg-muted))] rounded-full transition-colors cursor-pointer"
 							@click="close"
 						>
-							<Icon name="lucide:x" class="w-5 h-5 text-gray-600" />
+							<Icon name="lucide:x" class="w-5 h-5 text-[rgb(var(--ui-text-secondary))]" />
 						</button>
 					</div>
 
