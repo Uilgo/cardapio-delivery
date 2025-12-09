@@ -1,0 +1,53 @@
+{
+	"name": "cardapio",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"check": "pnpm run format:check && pnpm run lint && pnpm run typecheck",
+		"fix": "pnpm run format && pnpm run lint:fix",
+		"typecheck": "nuxt typecheck",
+		"prepare": "husky install"
+	},
+	"lint-staged": {
+		"*.{js,ts,jsx,tsx,vue}": [
+			"prettier --write",
+			"eslint --fix"
+		],
+		"*.{css,scss,md,json}": [
+			"prettier --write"
+		]
+	},
+	"dependencies": {
+		"@nuxt/eslint": "1.11.0",
+		"@nuxt/icon": "2.1.0",
+		"@nuxt/image": "2.0.0",
+		"@pinia/nuxt": "0.11.3",
+		"eslint": "^9.39.1",
+		"nuxt": "^4.2.1",
+		"pinia": "^3.0.4",
+		"sharp": "^0.34.5",
+		"vue": "^3.5.25",
+		"vue-router": "^4.6.3"
+	},
+	"packageManager": "pnpm@10.25.0+sha512.5e82639027af37cf832061bcc6d639c219634488e0f2baebe785028a793de7b525ffcd3f7ff574f5e9860654e098fe852ba8ac5dd5cefe1767d23a020a92f501",
+	"devDependencies": {
+		"@iconify-json/lucide": "^1.2.79",
+		"@tailwindcss/vite": "^4.1.17",
+		"@typescript-eslint/eslint-plugin": "^8.49.0",
+		"@typescript-eslint/parser": "^8.49.0",
+		"husky": "^8.0.0",
+		"lint-staged": "^16.2.7",
+		"prettier": "^3.7.4",
+		"prettier-plugin-vue": "^1.1.6",
+		"tailwindcss": "^4.1.17"
+	}
+}

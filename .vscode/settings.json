@@ -1,0 +1,39 @@
+{
+	"css.validate": false,
+	"css.lint.unknownAtRules": "ignore",
+	"scss.validate": false,
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"tailwindCSS.experimental.configFile": "./tailwind.config.js",
+	"tailwindCSS.includeLanguages": {
+		"vue": "html",
+		"vue-html": "html"
+	},
+	"tailwindCSS.classAttributes": ["class", "ui"],
+	"tailwindCSS.experimental.classRegex": [["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]],
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[vue]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"prettier.enable": true
+}
